@@ -1,5 +1,9 @@
 #include <iostream>
+#include <map>
+#include <string>
 #include <concepts>
+#include <utility>
+
 
 class Person{
 protected:
@@ -30,7 +34,8 @@ public:
     Male(std::string&& _name, std::string&& _surname, int _age):
     Person(std::move(_name), std::move(_surname), _age){}
 
-    void Testosterone(){
+
+    void static Testosterone(){
         std::cout<<"My hormone is testosterone";
     }
 };
@@ -44,7 +49,7 @@ public:
     }
     Female(std::string&& _name, std::string&& _surname, int _age):
     Person(std::move(_name), std::move(_surname), _age){}
-    void Oestrogen(){
+    void static Oestrogen(){
         std::cout<<"My hormone is oestrogen";
     }
 };
@@ -62,20 +67,28 @@ concept IsWoman = requires(Human human){
 class Company{
 private:
     std::string name;
+protected:
     double wages;
     std::map<Person, double> Workers;
 
 public:
-    Company(): name("SomeCorp."){}
-    Company(std::string _name, double _wages):name(_name), wages(_wages){}
-    void RecruitPerson(Person worker);
+    Company(): name("SomeCorp."), wages(10000.0){}
+    Company(std::string _name, double _wages):name(std::move(_name)), wages(_wages){}
+    void RecruitPerson(const Person& person){
+        Workers[person] = wages;
+    }
+
     void virtual ChangeWages(double percentage);
-    void virtual Dismiss();
+
+    void Dismiss(){
+        Workers.clear();
+    }
 };
 
-class MiningCompany: public Company{};
+//TODO добавить классы компаний по шахте и сурагатному материнству
+//TODO реализовать концепты для компаний
+//TODO реализовать паттерн command
 
-class SurrogacyCompany: public Company{};
 
 int main() {
     return 0;

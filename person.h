@@ -11,16 +11,16 @@ protected:
 public:
     Person(): name("Ivan"), age(30){}
     Person(std::string _name, int _age): name(_name), age(_age){}
-    int Get_Age();
+    int Get_Age(){ return this->age; }
 };
 
 template<class Human>
-concept OverEighteen = requires (Human h){
-    h.Get_Age > 18;
+concept IsAgeEighteenOrMore = requires (Human h){
+    h.Get_Age() >= 18;
 };
 
 template<class Human>
-concept OverSixteen = requires (Human h){
-    h.Get_Age > 16;
+concept IsAgeSixteenOrMore = requires (Human h){
+    h.Get_Age() >= 16;
 };
 #endif //OOP_TASK_PERSON_H

@@ -18,27 +18,28 @@ enum FilmType{
 
 class Hall{
 private:
+    int row, col;
     std::string name;
     Place** places;
     FilmType filmType;
-public:
     Hall() = default;
+public:
     ~Hall();
     void Set_Name(std::string _name);
-    void Set_Place(Place** _place);
+    void Set_Place(Place** _place, int _row, int _col);
     void Set_Film_Type(FilmType _filmType);
-    //TODO через консоль может быть?
-    void Book_Place(int row, int col);
-    void Cancel_Booking(int row, int col);
+    void Book_Place(int _row, int _col);
+    void Cancel_Booking(int _row, int _col);
+    void Show_hall();
 };
 
 class HallBuilder{
-private:
+protected:
     Hall* hall;
     virtual Place** Create_Place(int row, int col);
 public:
     HallBuilder() = default;
-    ~HallBuilder() = default;
+    ~HallBuilder();
     virtual void Add_Film_Type();
     void Add_Name(std::string _name);
     virtual void Create_Placements(int row, int col);

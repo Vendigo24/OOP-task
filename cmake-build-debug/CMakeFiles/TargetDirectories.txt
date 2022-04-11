@@ -1,0 +1,3 @@
+C:/Users/Шамиль/CLionProjects/OOP-task/cmake-build-debug/CMakeFiles/OOP_task.dir
+C:/Users/Шамиль/CLionProjects/OOP-task/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Шамиль/CLionProjects/OOP-task/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,9 +1,13 @@
-#include "hall.h"
+#include<iostream>
+#include "vector.h"
 
 int main() {
-    ThreeDFilmHall d3;
-    d3.Create_Placements(10, 10);
-    Hall* h = d3.Get_Hall();
-    h->Show_hall();
+    std::cout<<std::endl;
+    Vector<Vector<int>> v = Vector<Vector<int>>(5, Vector<int>(10, 1));
+    for(auto & startV : v){
+        for(int & elem : startV)
+            std::cout<<elem<<" ";
+        std::cout<<std::endl;
+    }
     return 0;
 }

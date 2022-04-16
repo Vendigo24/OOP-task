@@ -1,6 +1,6 @@
-#include <iostream>
 #include "hall.h"
-
+#include <iostream>
+#include <utility>
 
 Hall::~Hall() {
     for(auto i = 0; i < row; i++){
@@ -13,7 +13,7 @@ Hall::~Hall() {
 
 
 void Hall::Set_Name(std::string _name) {
-    this->name = _name;
+    this->name = std::move(_name);
 }
 
 
@@ -53,97 +53,14 @@ void Hall::Show_hall() {
     }
 }
 
-
-HallBuilder::~HallBuilder() {
-    delete hall;
-    hall = nullptr;
-}
-
-
 void HallBuilder::Add_Name(std::string _name) {
-    hall->Set_Name(_name);
+    this->hall->Set_Name(std::move(_name));
 }
 
-
-Hall* HallBuilder::Get_Hall() {
-    return hall;
+void HallBuilder::Add_Film_Type(FilmType _filmType) {
+    this->hall->Set_Film_Type(_filmType);
 }
 
-
-Place** TwoDFilmHall::Create_Place(int row, int col){
-    Place** place;
-    place = new Place*[row];
-    for(int i = 0; i<row; i++)
-        place[i] = new Place[col];
-
-    for(int i = 0; i < row; i++)
-        for(int j = 0; j < col; j++)
-            place[i][j] = EmptyPlace;
-
-    return place;
-}
-
-
-void TwoDFilmHall::Add_Film_Type() {
-    this->hall->Set_Film_Type(TwoDFilms);
-}
-
-
-void TwoDFilmHall::Create_Placements(int row, int col) {
-    Place** place = Create_Place(row, col);
-    this->hall->Set_Place(place, row, col);
-}
-
-
-Place** ThreeDFilmHall::Create_Place(int row, int col){
-    Place** place;
-    place = new Place*[row];
-    for(int i = 0; i<row; i++)
-        place[i] = new Place[col];
-
-    for(int i = 0; i < row; i++)
-        for(int j = 0; j < col; j++) {
-            if ((j != (int) (col / 4) && j != (int) (3 * col / 4)) ||
-            (i != (int) (row / 4) &&  i != (int) (3 * row / 4)))
-                place[i][j] = EmptyPlace;
-            place[i][j] = NotSitingPlace;
-        }
-
-    return place;
-}
-
-
-void ThreeDFilmHall::Add_Film_Type() {
-    this->hall->Set_Film_Type(ThreeDFilms);
-}
-
-
-void ThreeDFilmHall::Create_Placements(int row, int col) {
-    Place** place = Create_Place(row, col);
-    this->hall->Set_Place(place, row, col);
-}
-
-
-Place** IMaxFilmHall::Create_Place(int row, int col){
-    Place** place;
-    place = new Place*[row];
-    for(int i = 0; i<row; i++)
-        place[i] = new Place[col];
-
-    for(int i = 0; i < row; i++)
-        for(int j = 0; j < col; j++)
-            place[i][j] = EmptyPlace;
-
-    return place;
-}
-
-
-void IMaxFilmHall::Add_Film_Type() {
-    this->hall->Set_Film_Type(IMaxFilms);
-}
-
-
-void IMaxFilmHall::Create_Placements(int row, int col) {
-    Place** place = Create_Place(row, col);
-    this->hall->Set_Place(place, row, col);
+void HallBuilder::Create_Placements(int row, int col) {
+    this->hall = nullptr;
 }

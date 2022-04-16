@@ -2,6 +2,7 @@
 #define OOP_TASK_HALL_H
 
 #include <string>
+#include "vector.h"
 
 enum Place{
     NotSitingPlace = 0,
@@ -20,10 +21,11 @@ class Hall{
 private:
     int row, col;
     std::string name;
-    Place** places;
+    Vector<Vector<Place>> places;
     FilmType filmType;
-    Hall() = default;
+
 public:
+    Hall(): places(Vector<Vector<Place>>(0, Vector<Place>(0, NotSitingPlace))), row(0), col(0), filmType(static_cast<FilmType>(EmptyPlace)){}
     ~Hall();
     void Set_Name(std::string _name);
     void Set_Place(Place** _place, int _row, int _col);
@@ -36,44 +38,28 @@ public:
 class HallBuilder{
 protected:
     Hall* hall;
-    virtual Place** Create_Place(int row, int col);
-public:
-    HallBuilder() = default;
-    ~HallBuilder();
-    virtual void Add_Film_Type();
+    virtual Place** Create_Place(int row, int col) = 0;
+    void Add_Film_Type(FilmType _filmType);
     void Add_Name(std::string _name);
-    virtual void Create_Placements(int row, int col);
+    void Create_Placements(int row, int col);
+public:
+    HallBuilder(): hall(nullptr){}
+    virtual ~HallBuilder() {}
+    virtual void Create_Hall(int row, int col) = 0;
     Hall* Get_Hall();
 };
 
-
 class TwoDFilmHall : public HallBuilder{
-private:
+protected:
     Place** Create_Place(int row, int col) override;
 public:
-    TwoDFilmHall() : HallBuilder() {};
-    ~TwoDFilmHall() = default;
-    void Add_Film_Type() override;
-    void Create_Placements(int row, int col) override;
+    TwoDFilmHall() : HallBuilder(){}
+    ~TwoDFilmHall() {}
+    void Create_Hall(int row, int col) override;
 };
 
-class ThreeDFilmHall : public HallBuilder{
-private:
-    Place** Create_Place(int row, int col) override;
-public:
-    ThreeDFilmHall() : HallBuilder() {};
-    ~ThreeDFilmHall() = default;
-    void Add_Film_Type() override;
-    void Create_Placements(int row, int col) override;
-};
 
-class IMaxFilmHall : public HallBuilder{
-private:
-    Place** Create_Place(int row, int col) override;
-public:
-    IMaxFilmHall() : HallBuilder() {};
-    ~IMaxFilmHall() = default;
-    void Add_Film_Type() override;
-    void Create_Placements(int row, int col) override;
-};
+
 #endif //OOP_TASK_HALL_H
+
+

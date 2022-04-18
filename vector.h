@@ -25,8 +25,6 @@ private:
         Iterator& operator+=(int offset) {elem += offset; return *this;}
         Iterator& operator-=(int offset) {elem -= offset; return *this;}
 
-        Iterator operator+(int offset) {Iterator it(*this); return it += offset;}
-        Iterator operator-(int offset) {Iterator it(*this); return it -= offset;}
 
         bool operator==(const Iterator that) const{ return elem == that.elem;}
         bool operator!=(const Iterator that) const{ return elem != that.elem;}

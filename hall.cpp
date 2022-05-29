@@ -113,7 +113,7 @@ void IMaxFilmHall::Create_Placements(int row, int col) {
     auto place = Vector<Vector<Place>>(row, Vector<Place>(col, EmptyPlace));
     for(int i = 0; i < row; i++)
         for(int j = 0; j < col; j++)
-            if(i + j < col/2 || j > (col/2 + i) - 1 || i > (row/2 + j) -1 || i + j - 4 > row)
+            if(i + j < col/2 || j > (col/2 + i) - 1  || i > (row/2 + j) - 1 || (i >= row/2 && j >= col/2 && i + j + 1 >= col/2 + row))
                 place[i][j] = NotSitingPlace;
     hall->Set_Place(&place);
 }
@@ -124,4 +124,18 @@ void IMaxFilmHall::Create_Hall(std::string name, int row, int col) {
     Add_Name(name);
     Create_Placements(row, col);
     Add_Film_Type(IMaxFilms);
+}
+
+
+void Director::Build_Hall(std::string name, int row, int col) {
+    builder->Create_Hall(name, row, col);
+}
+
+
+Hall *Director::Get_Hall() {
+    return builder->Get_Hall();
+}
+
+void Director::Set_Builder(HallBuilder *_builder) {
+    this->builder = _builder;
 }

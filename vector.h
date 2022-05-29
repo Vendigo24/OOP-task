@@ -6,12 +6,16 @@ class Vector{
 private:
     T* buffer;
     unsigned int size;
+public:
     class Iterator{
     private:
         T* elem {nullptr};
     public:
         Iterator() = default;
         Iterator(T* data): elem(data) {}
+        Iterator(const Iterator& it) {
+            this->elem = it.elem;
+        }
 
         T& operator*() { return *elem; }
         const T& operator*() const { return *elem; }
@@ -22,14 +26,17 @@ private:
 
         Iterator& operator++() {++elem; return *this;}
         Iterator& operator--() {--elem; return *this;}
+        Iterator& operator=(const Iterator it) {elem = it.elem; return *this;};
+        Iterator operator++(int) {Iterator tmp = *this; ++*this; return tmp;}
+        Iterator operator--(int) {Iterator tmp = *this; --*this; return tmp;}
         Iterator& operator+=(int offset) {elem += offset; return *this;}
         Iterator& operator-=(int offset) {elem -= offset; return *this;}
 
 
         bool operator==(const Iterator that) const{ return elem == that.elem;}
         bool operator!=(const Iterator that) const{ return elem != that.elem;}
+        bool operator<=>(const Iterator that) const {return elem <=> that.elem;}
     };
-public:
     Vector();
     explicit Vector(unsigned int _size, T value);
     ~Vector();
@@ -105,5 +112,4 @@ Vector<T>& Vector<T>::operator=(const Vector<T> &that) {
     }
     return *this;
 }
-
 #endif //OOP_TASK_VECTOR_H

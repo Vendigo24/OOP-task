@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
-project(OOP_task)
+project(OOP-task)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 
-add_executable(OOP_task
-        main.cpp person.h film.h hall.h hall.cpp)
+add_executable(OOP-task main.cpp vector.h hall.h hall.cpp cash_desk.h cash_desk.cpp)

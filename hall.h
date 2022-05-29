@@ -83,6 +83,19 @@ public:
     void Create_Hall(std::string name, int row, int col) override;
 };
 
+
+class Director{
+private:
+    HallBuilder* builder;
+public:
+    Director():builder(nullptr){}
+    ~Director() {delete builder; builder = nullptr;}
+    void Set_Builder(HallBuilder* _builder);
+    void Build_Hall(std::string name, int row, int col);
+    Hall* Get_Hall();
+};
+
+
 #endif //OOP_TASK_HALL_H
 
 

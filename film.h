@@ -9,22 +9,13 @@ private:
     std::string name;
     int censorAge;
 public:
-    Film(std::string _name, int _censorAge): name(_name), censorAge(_censorAge){}
-    int Get_Censor_Age(){ return this->censorAge; }
+    Film(std::string _name, int _censorAge): name(_name){
+        if(_censorAge >= 18) censorAge = 18;
+        else if(_censorAge >= 16) censorAge = 16;
+        else censorAge = 0;
+    }
+    int Get_Censor_Age() { return this->censorAge; }
+    std::string Get_Name() {return this->name;}
 };
 
-template<class Film>
-concept OnlyEighteen = requires(Film film){
-    film.Get_Censor_Age() >= 18;
-};
-
-template<class Film>
-concept OnlySixteen = requires(Film film){
-    film.Get_Censor_Age() >= 16;
-};
-
-template<class Film>
-concept AllAges = requires(Film film){
-    film.Get_Censor_Age() >= 0;
-};
 #endif //OOP_TASK_FILM_H

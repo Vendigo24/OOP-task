@@ -1,4 +1,3 @@
-#include <iostream>
 #include "cinema.h"
 
 int main() {

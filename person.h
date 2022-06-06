@@ -2,7 +2,6 @@
 #define OOP_TASK_PERSON_H
 
 #include <string>
-#include <concepts>
 
 class Person{
 protected:

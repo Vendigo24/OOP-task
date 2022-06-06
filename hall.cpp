@@ -57,9 +57,9 @@ void Hall::Cancel_Booking(int _row, int _col) {
 
 void Hall::Reset_Hall() {
     for(auto & place : places)
-        for(auto & col : place)
-            if(col == BookedPlace)
-                col = EmptyPlace;
+        for(auto & status : place)
+            if(status == BookedPlace)
+                status = EmptyPlace;
 }
 
 
@@ -137,5 +137,5 @@ Hall *Director::Get_Hall() {
 }
 
 void Director::Set_Builder(HallBuilder *_builder) {
-    this->builder = _builder;
+    builder = _builder;
 }

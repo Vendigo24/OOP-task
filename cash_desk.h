@@ -1,35 +1,33 @@
 #ifndef OOP_TASK_CASH_DESK_H
 #define OOP_TASK_CASH_DESK_H
 
-#include <memory>
 #include "hall.h"
 #include "film.h"
 #include "person.h"
 
 class Action{
 protected:
-    Hall* hall;
+    Hall *hall;
 public:
     Action() = default;
     virtual void Do(int num1, int num2) = 0;
 };
 
 class Booking: public Action{
-
 public:
-    Booking(Hall* h);
+    Booking(Hall *h);
     void Do(int num1, int num2) override;
 };
 
-class UnBooking: public Action{
+class Cancel: public Action{
 public:
-    UnBooking(Hall* h);
+    Cancel(Hall *h);
     void Do(int num1, int num2) override;
 };
 
-class UnderAge: public Action{
+class Underage: public Action{
 public:
-    UnderAge(Hall* h);
+    Underage(Hall *h);
     void Do(int num1, int num2) override;
 };
 
@@ -38,23 +36,23 @@ class CashDesk{
     Film* film;
     Hall* hall;
     template<bool B>
-    void BookPlaceHelper(int num1, int num2) {
-        typedef typename std::conditional<B, Booking, UnderAge>::type Type;
+    void Book_Place_Helper(int num1, int num2) {
+        typedef typename std::conditional<B, Booking, Underage>::type Type;
         Type action = Type(hall);
         action.Do(num1, num2);
     }
     template<bool B>
-    void UnBookPlaceHelper(int num1, int num2){
-        typedef typename std::conditional<B, UnBooking, UnderAge>::type Type;
+    void Cancel_Booked_Place_Helper(int num1, int num2){
+        typedef typename std::conditional<B, Cancel, Underage>::type Type;
         Type action = Type(hall);
         action.Do(num1, num2);
     }
 public:
-    CashDesk(Hall* h):hall(h), buyer(nullptr), film(nullptr){};
+    CashDesk():hall(nullptr), buyer(nullptr), film(nullptr){};
     ~CashDesk();
-    void SetCustomer(Person* person);
-    void SetFilm(Film* filmName);
-    void SetHall(Hall* h);
+    void Set_Customer(Person* person);
+    void Set_Film(Film* filmName);
+    void SetNewHall(Hall* h);
     void BookPlace(int num1, int num2);
     void UnBookPlace(int num1, int num2);
 };

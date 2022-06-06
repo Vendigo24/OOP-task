@@ -51,7 +51,7 @@ void Cinema::Start() {
                         hall->Show_hall();
                     break;
                 default:
-                    std::cout<<"Wrong option"<<std::endl;
+                    std::cout<<"Wrong option!"<<std::endl;
             }
         }
     }

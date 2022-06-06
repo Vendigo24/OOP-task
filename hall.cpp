@@ -49,7 +49,7 @@ void Hall::Book_Place(int _row, int _col) {
     else if(this->places[_row][_col] == BookedPlace)
         std::cout<<"This place is booked"<<std::endl;
     else
-        std::cout<<"Not a siting place"<<std::endl;
+        std::cout<<"Not a sitting place"<<std::endl;
 }
 
 
@@ -59,7 +59,7 @@ void Hall::Cancel_Booking(int _row, int _col) {
     else if(this->places[_row][_col] == EmptyPlace)
         std::cout<<"This place is empty"<<std::endl;
     else
-        std::cout<<"Not a siting place"<<std::endl;
+        std::cout<<"Not a sitting place"<<std::endl;
 }
 
 

@@ -1,4 +1,6 @@
 #include "cinema.h"
+
+#include <utility>
 #include "vector.h"
 void Cinema::Start() {
     Vector<Hall*> halls;
@@ -61,7 +63,7 @@ void Cinema::Start() {
 Hall *Cinema::Create_Hall(HallBuilder *builder, std::string name, int row, int col) {
     auto director = new Director();
     director->Set_Builder(builder);
-    director->Build_Hall(name, row, col);
+    director->Build_Hall(std::move(name), row, col);
     return director->Get_Hall();
 }
 
@@ -75,7 +77,7 @@ void Cinema::Set_Customer() {
     desk->Set_Customer(new Person(name, age));
 }
 
-int Cinema::Show_And_Get_Option_About_Hall(std::string text) {
+int Cinema::Show_And_Get_Option_About_Hall(const std::string& text) {
     int hallIndex;
     std::cout<<text<<std::endl;
     std::cout<<"1 - Ocean"<<std::endl;

@@ -6,9 +6,9 @@
 
 class Cinema {
     CashDesk* desk;
-    Hall* Create_Hall(HallBuilder* builder, std::string name, int row, int col);
+    static Hall* Create_Hall(HallBuilder* builder, std::string name, int row, int col);
     void Set_Customer();
-    int Show_And_Get_Option_About_Hall(std::string text);
+    static int Show_And_Get_Option_About_Hall(const std::string& text);
 public:
     Cinema() : desk(nullptr){}
     void Start();

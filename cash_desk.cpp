@@ -26,7 +26,7 @@ void Underage::Do(int num1, int num2) {
 }
 
 
-void CashDesk::BookPlace(int num1, int num2) {
+void CashDesk::Book_Place(int num1, int num2) {
     if(buyer->Get_Age() >= film->Get_Censor_Age())
         Book_Place_Helper<true>(num1, num2);
     else
@@ -41,11 +41,11 @@ void CashDesk::Set_Film(Film* filmName) {
     film = filmName;
 }
 
-void CashDesk::SetNewHall(Hall *h) {
+void CashDesk::Set_New_Hall(Hall *h) {
     hall = h;
 }
 
-void CashDesk::UnBookPlace(int num1, int num2) {
+void CashDesk::Cancel_Booking(int num1, int num2) {
     if(buyer->Get_Age() >= film->Get_Censor_Age())
         Cancel_Booked_Place_Helper<true>(num1, num2);
     else

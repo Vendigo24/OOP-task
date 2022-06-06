@@ -10,11 +10,7 @@ private:
     std::string name;
     int censorAge;
 public:
-    Film(std::string _name, int _censorAge): name(_name){
-        if(_censorAge >= 18) censorAge = 18;
-        else if(_censorAge >= 16) censorAge = 16;
-        else censorAge = 0;
-    }
+    Film(std::string _name, int _censorAge): name(_name), censorAge(_censorAge){}
     int Get_Censor_Age() { return this->censorAge; }
     std::string Get_Name() {return this->name;}
     friend std::ostream& operator<<(std::ostream& os, const Film& film) {

@@ -29,22 +29,22 @@ void Cinema::Start() {
                     std::cout<<"Session ended!"<<std::endl;
                     break;
                 case 1:
-                    desk->SetNewHall(halls[Show_And_Get_Option_About_Hall("Which hall do you want to watch film in?:")]);
+                    desk->Set_New_Hall(halls[Show_And_Get_Option_About_Hall("Which hall do you want to watch film in?:")]);
                     Set_Customer();
                     std::cout<<"Row: ";
                     std::cin>>row;
                     std::cout<<"Col: ";
                     std::cin>>col;
-                    desk->BookPlace(row, col);
+                    desk->Book_Place(row, col);
                     break;
                 case 2:
-                    desk->SetNewHall(halls[Show_And_Get_Option_About_Hall("Which hall are you going to cancel booking in?:")]);
+                    desk->Set_New_Hall(halls[Show_And_Get_Option_About_Hall("Which hall are you going to cancel booking in?:")]);
                     Set_Customer();
                     std::cout<<"Row: ";
                     std::cin>>row;
                     std::cout<<"Col: ";
                     std::cin>>col;
-                    desk->UnBookPlace(row, col);
+                    desk->Cancel_Booking(row, col);
                     break;
                 case 3:
                     for(auto hall:halls)

@@ -52,8 +52,8 @@ public:
     ~CashDesk();
     void Set_Customer(Person* person);
     void Set_Film(Film* filmName);
-    void SetNewHall(Hall* h);
-    void BookPlace(int num1, int num2);
-    void UnBookPlace(int num1, int num2);
+    void Set_New_Hall(Hall* h);
+    void Book_Place(int num1, int num2);
+    void Cancel_Booking(int num1, int num2);
 };
 #endif //OOP_TASK_CASH_DESK_H
